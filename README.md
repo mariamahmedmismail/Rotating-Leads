@@ -47,13 +47,6 @@ space_between_letters → Controls the gap between letters.
 
 dotTime → Controls how long each row stays lit (affects brightness/speed).
 
-🧑‍🤝‍🧑 Team Members
-
-Mariam Ahmed Mohamed Ismail – ID: 20235040
-
-MennaTullah Hisham Elbeshry – ID: 20236101
-
-Ganna Mohamed Abdelrahman – ID: 20236024
 
 🖥 Tech Stack
 
