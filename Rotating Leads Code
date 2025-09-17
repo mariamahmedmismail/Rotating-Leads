@@ -1,0 +1,93 @@
+//Rotating leds Project
+
+
+//Code for printing letters on leds:
+//Define array with data type integer that has binary represtantion for letters A,G,H,I,M and _ charater with led matrix 8X5
+int _[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+int A[] = {1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1};
+int G[] = {1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0};
+int H[] = {1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1};
+int I[] = {0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1};
+int M[] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1};
+//define pointer that has data type integer
+int* alpha[] = {A, G, H, I, M}; 
+//Declaring integers that will be used to define spaces between letters and time dot appear 
+int space_between_letters;
+int dotTime;
+
+void setup() {
+  //Setting pins 2--->9 as outputs as pins 0 and 1 are used for serial communications
+  for ( int pins = 2; pins < 10 ; pins++ ) {
+    pinMode(pins, OUTPUT);
+  }
+  space_between_letters= 6;  
+  dotTime=1;
+}
+
+
+//A function called printletter is defined to print letters given
+void printletter(int letter[]) 
+{
+  int row;
+  //A loop is used to print the first row of the letter
+  for (row = 0; row < 8; row++)
+  {       
+    digitalWrite(row + 2, letter[row]);
+  }
+  //delay(dotTime) is used to wait for 1 ms to ensure that each row has a chance to light up before the next row starts.
+  delay(dotTime);
+  //A loop is used to print the second row of the letter
+  for (row = 0; row < 8; row++)
+  {      
+    digitalWrite(row + 2, letter[row + 8]);
+  }
+  delay(dotTime);
+  //A loop is used to print the third row of the letter
+  for (row = 0; row < 8; row++)
+  {       
+    digitalWrite(row + 2, letter[row + 16]);
+  }
+  delay(dotTime);
+  //A loop is used to print the fourth row of the letter
+  for (row = 0; row < 8; row++)
+  {
+    digitalWrite(row + 2, letter[row + 24]);
+  }
+  delay(dotTime);
+  //A loop is used to print the fifth row of the letter
+  for (row = 0; row < 8; row++)
+  {
+    digitalWrite(row + 2, letter[row + 32]);
+  }
+  delay(dotTime);
+  // A loop is used to print the space between each letters
+  for (row = 0; row < 8; row++)
+  {       
+    digitalWrite(row + 2, 0);
+  }
+  // delay(space_between_letters) is used to create a pause or space between the display of each letter
+  delay(space_between_letters);
+}
+
+void loop() 
+{
+  //Calling function printletter to print the following letters that represent the intials each member of team  
+    printletter(M);
+    delay(space_between_letters);
+    printletter(H);
+    //print '_' character for spaces between words
+    printletter(_);
+    delay(dotTime);
+    printletter(M);
+    delay(space_between_letters);
+    printletter(I);
+    //print '_' character for spaces between words
+    printletter(_);
+    delay(dotTime); // Additional delay for space
+    printletter(G);
+    delay(space_between_letters);
+    printletter(M);
+    delay(space_between_letters);
+    printletter(A);
+    delay(space_between_letters);
+}
